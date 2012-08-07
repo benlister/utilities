@@ -1,0 +1,132 @@
+/* 
+Written by Ben Lister (darkcrimson.com) - Last revised 08 Jan 2010 
+Tutorial: http://blog.darkcrimson.com/2010/01/jquery-xml-parser/
+Basic styles are defined with the addition of a basic global reset.
+Please make changes and additions as desired
+*/
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd,q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+strong { font-weight: bold;}
+body {
+	line-height: 1em;  
+	background: #7B9A70;
+	color: #333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 62.5%; /* 1em = 10px \ 1.1em = 11px \ 1.2em = 12px */
+}	
+	
+ol, ul { list-style: none }
+	
+table { border-collapse: separate;  border-spacing: 0 }
+
+
+
+html, body {
+	font-family : Arial, Helvetica, Sans serif;
+	color: #fff;
+	background: #000 url(../images/site_bg.png) top left no-repeat;
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+	font-size 1em;
+}
+
+a { color: #fff }
+
+h1#title {
+	padding: 40px 0 10px 0;
+	margin:40px 0 10px 0;
+	text-indent: -9999px;
+	background: url(../images/tutorial_title.png) no-repeat top center;
+}
+	*html h1#title {
+		text-indent: 0 !important;
+		background: none !important;
+		margin: 20px 0 10px 0;
+		padding: 20px 0 10px 0;
+		text-align: center;
+		font-size: 1.7em;
+	}
+h3#xml_dec_nav {
+	clear: both;
+	padding: 15px 0;
+	font-size: 1.2em;
+	font-weight: bold;
+	float: left;
+}
+
+h4#xml_desc_header {
+	display: block;
+	font-size: 0.9em;
+	clear: both;
+	padding-top: 30px;
+	text-align: center
+}
+
+#xml_wrapper { width: 960px; margin: 0 auto }
+
+	#xml_wrapper table { margin-top: 20px;width: 100% }
+	
+	#xml_wrapper table td { padding: 5px;margin: 0 10px 0 0 }
+	
+#xml_wrapper table th {
+	text-align: left;
+	background: #5f0000 url(../images/th_bg.png) top left repeat-x;
+	color: #410000;	
+	padding: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+	#xml_wrapper table th:first-child { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px }
+	#xml_wrapper table th:last-child { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px }
+
+ .th_hover { color: #ccc}
+ 
+ 
+ .headerSortDown,.headerSortUp { color: #fff !important }
+ 
+ul#xml_nav { float: left; margin:8px 0 0 22px }
+
+	ul#xml_nav li {
+		float:left;
+		margin-right: 8px;
+		background: #5f0000 url(../images/th_bg.png) top left repeat-x;
+		padding:5px 8px;
+		font-size: 0.9em;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+	}
+		ul#xml_nav li a { text-decoration: none }
+		
+			ul#xml_nav li a:hover {}
+			
+#preload_xml {
+	height:100px;
+	left:50%;
+	position:absolute;
+	top:30%;
+	width:200px;
+	z-index:9999;
+}
+	#preload_xml img {
+		display: block;
+		margin: 0 0 15px 35px;
+		
+	}			
+			
+/* These have ties to XML.js */ 
+	.xml_nav_hit { background: #fff !important }
+		.xml_nav_hit a { color: #5F0000 !important } 
+	
+p#author {
+	clear: both;
+	font-size: 0.8em;
+	text-align: center;
+	margin-top: 30px;
+	color: #ccc;
+}
+
+.stripe { background: #1F1F1F !important}
+*html .stripe { background: none !important}
