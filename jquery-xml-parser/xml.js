@@ -12,7 +12,7 @@ $(function() {
     function xml_parser(wrapper) {
     
 	//Construct and display preloader
-     $('<div id="preload_xml"></div>').html('<img src="images/ajax-loader.gif" alt="loading data" /><h3>Loading Data...</h3>').prependTo($('body'));
+     $('<div id="preload_xml" />').html('<img src="images/ajax-loader.gif" alt="loading data" /><h3>Loading Data...</h3>').prependTo($('body'));
      	
      	//Hide Content (this is sloppy but easy to customize..)
         $(wrapper).hide();
@@ -71,7 +71,7 @@ $(function() {
 				 nav_link.click( function() {
 				  	var tr = wrapper +' table tbody tr';
 					$(tr).show(); //Show all rows
-					switch ($(this).attr("class")) {
+					switch ($(this).attr('class')) {
 						case  "filter_10 hit" :
 							$(tr).filter(function (index) {
 								return parseFloat($(this).attr('filterCriteria')) > 10;
