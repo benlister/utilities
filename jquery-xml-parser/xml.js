@@ -1,50 +1,49 @@
 /*
 jQuery XML Parser with Sorting and Filtering
-Written by Ben Lister (darkcrimson.com) revised 25 Apr 2010
+Written by Ben Lister (@bahnburner) January 2010 
+Last revised Aug 7, 2012
 Tutorial: http://blog.darkcrimson.com/2010/01/jquery-xml-parser/
 
 Licensed under the MIT License:
 http://www.opensource.org/licenses/mit-license.php
 */
 
-$(function() {
-	
-    function xml_parser(wrapper) {
-    
+(function($) {
+	$.fn.extend({ 
+   xml_parser : function(el) {
+  
 	//Construct and display preloader
      $('<div id="preload_xml" />').html('<img src="images/ajax-loader.gif" alt="loading data" /><h3>Loading Data...</h3>').prependTo($('body'));
      	
-     	//Hide Content (this is sloppy but easy to customize..)
-        $(wrapper).hide();
-		
+        el.hide();
+        var e = el;
+        
 		//Get XML Data
         $.ajax({
             type: 'GET',
             url: 'xml/data.xml',
             dataType: 'xml',
-            success: function(xml_list) {
+            success: function(data) {
             
-			  //Remove preloader HTML & show data
+              //Remove preloader HTML & show data
        		  $('#preload_xml').remove();
-       		  $(wrapper).show();
-				
-				var xmlArr = [];
-                $(xml_list).find('entry').each(function() {
-					
+       		  el.show();
+            
+            var entries     = $(data).find('entry'),
+            	xmlArr      = [];
+            	
+                entries.each(function() {
+
 					//Meta Data
-                    var xml_date      	= $(this).attr('date'); 
-                    var xml_cost 	  	= $(this).attr('cost');
-					var xml_category  	= $(this).attr('category');
-					
-					//Description
-					var xml_name  	  	= $(this).find('name').text();
-					var xml_description = $(this).find('description').text();
+                    var xml_date      	= $(this).attr('date'),
+                        xml_cost 	  	= $(this).attr('cost'),
+					    xml_category  	= $(this).attr('category'),
+					    xml_name  	  	= $(this).find('name').text(),
+					    xml_description = $(this).find('description').text();
 					
                     
                   // Add matched items to an array
-                  xmlArr += '<tr filterCriteria="';
-                  xmlArr += xml_cost;
-                  xmlArr += '"><td>';
+                  xmlArr += '<tr data-filtercriteria="'+ xml_cost +'"><td>';
                   xmlArr += xml_date;
                   xmlArr += '</td><td class="xml_name">';
                   xmlArr += xml_name;
@@ -58,58 +57,63 @@ $(function() {
                              
                 }); // end each loop
 
-                  //Append array to table (this way is much faster than doing this individually for each item)
-                  $(xmlArr).appendTo(wrapper +' table tbody');
+                  $(xmlArr).appendTo(el.find('table > tbody'));
                   
                   
- 				  //Add sort and zebra stripe to table (NOTE: this does not work as intended with sort feature)
-				   window.setTimeout('$("'+ wrapper +' table").tablesorter({sortList:[[0,0],[0,0]], widgets: [\'zebra\']});', 120);
-				   $(wrapper +' table').hide().slideDown('200');
+ 				  //Add sort and zebra stripe to table
+				   window.setTimeout(function(){ el.find('table').tablesorter({sortList:[[0,0],[0,0]], widgets: ['zebra']});}, 120);
+				  el.find('table').hide().slideDown('200');
 				   
 				  //Filter results functionality
 				 var nav_link = $('#xml_nav li a');
+				 
 				 nav_link.click( function() {
-				  	var tr = wrapper +' table tbody tr';
-					$(tr).show(); //Show all rows
-					switch ($(this).attr('class')) {
-						case  "filter_10 hit" :
-							$(tr).filter(function (index) {
-								return parseFloat($(this).attr('filterCriteria')) > 10;
+				  	
+				  	var tr 		   = el.find('tbody > tr'),
+				  		attr_class = $(this).attr('class'),
+				  		odd		   = el.find('tbody > tr:visible:odd');
+					
+					tr.show(); //Show all rows
+
+					switch (attr_class) {
+						case  'filter_10 hit' :
+							$(tr).filter(function() {
+								return parseFloat($(this).data('filtercriteria')) > 10;
 							}).hide();
 						break;
 						
-						case  "filter_10_20 hit" :
-							$(tr).filter(function (index) {
-								return parseFloat($(this).attr('filterCriteria')) < 10 || parseFloat($(this).attr("filterCriteria")) > 20  ;
+						case  'filter_10_20 hit' :
+							$(tr).filter(function() {
+								return parseFloat($(this).data('filtercriteria')) < 10 || parseFloat($(this).data('filtercriteria')) > 20  ;
 							}).hide();
 						break;
 						
-						case  "filter_20 hit" :
-							$(tr).filter(function (index) {
-								return parseFloat($(this).attr('filterCriteria')) < 20;
+						case  'filter_20 hit' :
+							$(tr).filter(function() {
+								return parseFloat($(this).data('filtercriteria')) < 20;
 							}).hide();
 
 						break;
 						
-						case  "filter_0 hit" :
+						case  'filter_0 hit' :
 							$(tr).show();
 						break;
 												
 					} // end filter switch
-						$(tr).removeClass('stripe');	
-						$(tr + ':visible:odd').addClass('stripe');
+						tr.removeClass('stripe');	
+						odd.addClass('stripe');
 				  });// end filter   
 				  
-			} // end post AJAX call operaitons
-        }); // end AJAX
-    } // end function
+			} 
+        }); 
+    } 
+       });
     
-    
- 	//Function Call
- 	var wrapper = '#xml_wrapper'; // Id of wrapper
- 	xml_parser(wrapper);
+ $(document).ready(function() {
+
+ 	$.fn.xml_parser($('#xml_wrapper'));
  	
- 	var nav_link = $('#xml_nav li a'); //Navigation <LI> Link for filtering event
+ 	var nav_link = $('#xml_nav > li > a'); //Navigation <LI> Link for filtering event
 	nav_link.click(function() {
 		
 		//Add hit state to filter link
@@ -120,7 +124,6 @@ $(function() {
 		nav_link.parent().removeClass('xml_nav_hit');
 		$(this).parent().addClass('xml_nav_hit');
 	});
+	    }); 	
 	
-	
-	
-});
+})(jQuery);
