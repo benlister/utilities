@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<entry date="1/08/10" cost="27" category="Mobile Phone Accessories">
+		<name>
+			<![CDATA[ iPhone Case]]>
+		</name>
+		<description>
+			<![CDATA[ Black Matte Finish, fits all 3G and 3Gs models. ]]>
+		</description>
+	</entry>
+	<entry date="12/16/09" cost="11"  category="Laser">
+		<name>
+			<![CDATA[ Laser Pointer]]>
+		</name>
+		<description>
+			<![CDATA[ Battery Powered Laser Pointer ]]>
+		</description>
+	</entry>
+	<entry date="6/02/09" cost="6"  category="Computer Accessories">
+		<name>
+			<![CDATA[ Canned High Pressure Air Blaster]]>
+		</name>
+		<description>
+			<![CDATA[ For cleaning hard to reach computer parts and annoying your siblings, 4.8 oz ]]>
+		</description>
+	</entry>
+	<entry date="11/08/09" cost="22" category="Cables">
+		<name>
+			<![CDATA[ HDMI Cable]]>
+		</name>
+		<description>
+			<![CDATA[ Length: 7ft, black, not full of gold ]]>
+		</description>
+	</entry>
+	<entry date="1/05/10" cost="10"  category="Cleaning">
+		<name>
+			<![CDATA[ Microfiber towel]]>
+		</name>
+		<description>
+			<![CDATA[ 100% cotton, 12''x16'', made in the USA  ]]>
+		</description>
+	</entry>
+	<entry date="8/22/09" cost="15" category="Computer Accessories">
+		<name>
+			<![CDATA[ Canned High Pressure Air Blaster]]>
+		</name>
+		<description>
+			<![CDATA[ For cleaning hard to reach computer parts and annoying your siblings, 12.9 oz ]]>
+		</description>
+	</entry>
+	<entry date="4/17/09" cost="52"  category="Digital Storage">
+		<name>
+			<![CDATA[ DVD-R (300 pack)]]>
+		</name>
+		<description>
+			<![CDATA[ 300 Pack of Generic DVD-R discs, 24x ]]>
+		</description>
+	</entry>
+	<entry date="12/16/09" cost="40" category="Video Game Accessories">
+		<name>
+			<![CDATA[ PS3 Remote ]]>
+		</name>
+		<description>
+			<![CDATA[ Because walking 5ft to the TV is too difficult ]]>
+		</description>
+	</entry>
+	<entry date="04/12/09" cost="2"  category="Computer Accessories">
+		<name>
+			<![CDATA[ 1GB SD card]]>
+		</name>
+		<description>
+			<![CDATA[ 1GB SD Memory card, generic brand, probably will crap out on you in a week ]]>
+		</description>
+	</entry>
+	
+	<entry date="08/18/09" cost="7"  category="Food">
+		<name>
+			<![CDATA[ Choco Bar]]>
+		</name>
+		<description>
+			<![CDATA[ 12 flavor-iffic Choco treats! ]]>
+		</description>
+	</entry>
+	<entry date="10/14/09" cost="5"  category="Food">
+		<name>
+			<![CDATA[ Bottled Water]]>
+		</name>
+		<description>
+			<![CDATA[ 2liter bottle (4 pack)]]>
+		</description>
+	</entry>
+	<entry date="09/19/09" cost="14"  category="Sanitation">
+		<name>
+			<![CDATA[ Rat Traps]]>
+		</name>
+		<description>
+			<![CDATA[ Leathal Snapper<sup>&reg;</sup> brand rat traps ]]>
+		</description>
+	</entry>
+
+	<entry date="05/10/09" cost="19"  category="Office Accessories">
+		<name>
+			<![CDATA[ Copy paper]]>
+		</name>
+		<description>
+			<![CDATA[ 5000 sheets, white ]]>
+		</description>
+	</entry>
+	<entry date="03/04/09" cost="11"  category="Office Accessories">
+		<name>
+			<![CDATA[ Stapler]]>
+		</name>
+		<description>
+			<![CDATA[ Quick fire Stapler]]>
+		</description>
+	</entry>
+</data>
