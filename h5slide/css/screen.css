@@ -1,0 +1,190 @@
+/*
+h5Slide - HTML5 powered, browser-based slideshow
+Written by Ben Lister (@bahnburner) June 2010 
+Last revised Aug 14, 2012
+
+Licensed under the MIT License:
+http://www.opensource.org/licenses/mit-license.php
+*/
+
+/*todo: remove ugly IDs and make classes more modular*/
+
+/* Global reset */
+html, body, div, span, h1, h2, h3, a, ul, li { margin: 0; padding: 0; border: 0;  font-weight: inherit; font-size: 100%; font-family: inherit;  }
+body { line-height: 1.3em;  font-family:"tw cen mt",helvetica, arial; }	
+ol, ul { list-style: none }
+
+h3 > span:focus, #slide_wrapper > section ul:focus, #slide_wrapper > section ul li:focus { outline:#dddddc;outline:rgba(221,221,220,0.3) dashed 1px;}
+ul#nav li a { outline: #000;}
+ 
+/* Presentation Styles */
+
+body {
+	font-size: 1.5em;
+	color: #fff;
+	background: rgb(51,48,47);
+	background: -moz-linear-gradient(top, rgba(51,48,47,1) 0%, rgba(22,22,21,1) 49%, rgba(12,12,12,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(51,48,47,1)), color-stop(49%,rgba(22,22,21,1)), color-stop(100%,rgba(12,12,12,1)));
+	background: -webkit-linear-gradient(top, rgba(51,48,47,1) 0%,rgba(22,22,21,1) 49%,rgba(12,12,12,1) 100%);
+	background: -o-linear-gradient(top, rgba(51,48,47,1) 0%,rgba(22,22,21,1) 49%,rgba(12,12,12,1) 100%);
+	background: -ms-linear-gradient(top, rgba(51,48,47,1) 0%,rgba(22,22,21,1) 49%,rgba(12,12,12,1) 100%);
+	background: linear-gradient(to bottom, rgba(51,48,47,1) 0%,rgba(22,22,21,1) 49%,rgba(12,12,12,1) 100%);
+}
+html{ 
+	height: 100%;
+}
+
+h3 {
+	font-size: 1.4em;
+	margin: 10px 0 50px 0;
+	color: #fff;
+	padding: 8px 10px 8px 10px;
+	background: #000;
+	background: rgba(0,0,0,0.2); 
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2), -1px 7px 9px rgba(0, 0, 0, 0.1);
+}
+
+a { color: #fff; color:rgba(255,255,255,0.95); text-decoration: none; border-bottom: 1px dotted;font-weight: normal;}
+
+
+#slide_wrapper {
+	min-height: 400px;
+	width: 100%;
+	margin: 30px 0 20px;
+	-moz-transition: margin .4s ease-in-out;
+	-webkit-transition: margin .4s ease-in-out;
+	-o-transition: margin .4s ease-in-out;
+	-ms-transition: margin .4s ease-in-out;
+	transition: margin .4 ease-in-out;
+}
+
+.pres #slide_wrapper { margin: 0 0 10px;}
+
+nav { margin-bottom: 20px; overflow: hidden}
+.pres nav ul { 
+	 -moz-transition: opacity .4s ease-in-out;
+	 -webkit-transition: opacity .4s ease-in-out;
+	 -o-transition: opacity .4s ease-in-out;
+	 -ms-transition: opacity .4s ease-in-out;
+	 transition: opacity .4 ease-in-out;
+	 opacity: 0	
+}
+.pres nav:hover ul { opacity: 1;}
+#slide_wrapper > section {
+	padding: 10px;
+	display: none;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+	width: 85%;
+	margin: 0 auto;
+	background: #000;
+	background: rgba(0,0,0,0.4);
+	
+	-moz-border-radius:6px 6px 6px 6px;
+	-webkit-border-radius:6px 6px 6px 6px;
+	border-radius:6px 6px 6px 6px;
+	
+	border: 1px solid rgba(0,0,0,.1);
+	min-height:680px;
+	
+  	-moz-box-shadow:0 0 12px rgba(0,0,0,0.5);
+  	-webkit-box-shadow:0 0 12px rgba(0,0,0,0.5);
+  	box-shadow:0 0 12px rgba(0,0,0,0.5);;
+	
+}
+
+
+	#slide_wrapper > section ul {
+		margin: 20px 40px;
+		list-style-type: disc;
+	}
+		#slide_wrapper > section ul li {
+			margin-bottom: 40px;
+			color: #fff;
+			color: rgba(255,255,255,0.95);
+			letter-spacing: 0.02em;
+		}
+		
+		#slide_wrapper > section ul.full { width:auto;margin-left:50px}
+footer { width: 85%; margin: 0 auto;}
+ul#nav {
+	float:right;
+	font-family: helvetica, arial, sans-serif;
+	font-size:0.8em;
+	padding-right: 3px;
+	top: 3px;
+	right:0;
+	opacity: 0.5;
+
+	 -moz-transition: opacity .4s ease-in-out;
+	 -webkit-transition: opacity .4s ease-in-out;
+	 -o-transition: opacity .4s ease-in-out;
+	 -ms-transition: opacity .4s ease-in-out;
+	 transition: opacity .4 ease-in-out;
+
+}
+	.pres ul#nav { opacity: .2}
+	ul#nav:hover {opacity: 1.0}
+	
+	#nav li {
+		float:left;
+		line-height:1.25em;
+		margin-right:0;
+	}
+		#nav li a {
+			border: 0;
+			padding:5px 5px 2px 5px;
+			opacity: 0.7;
+		}
+		
+			#nav li a:hover {
+				background: #222;
+				color: #fff;
+				opacity: 1;
+			}
+			 #nav li a.hit { 
+			 	background:#111;
+				color: #fff;
+				opacity: 1; 
+			}
+			
+			#nav li#nav_info { margin: 0 5px 0 20px}
+			
+			#nav li#nav_info a { background: #fff ; color: #000; font-style: italic; -moz-border-radius: 10px; opacity: 0.3 }
+			#remove_slide { position: relative; top: -4px;}
+	.controls {
+		float:left;
+		font-size:1.6em;
+		margin-left: 20px;
+	}
+	.controls >li {float: left;margin-right: 20px }
+		.controls > li a { border: 0px;}
+
+
+#remove_all a, #theme, #pres {
+	display:block;
+	font-size:0.35em;
+}
+body.web375  {
+	background: rgb(119,3,3);
+	background: -moz-linear-gradient(top, rgba(119,3,3,1) 18%, rgba(147,2,2,1) 52%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(18%,rgba(119,3,3,1)), color-stop(52%,rgba(147,2,2,1)));
+	background: -webkit-linear-gradient(top, rgba(119,3,3,1) 18%,rgba(147,2,2,1) 52%);
+	background: -o-linear-gradient(top, rgba(119,3,3,1) 18%,rgba(147,2,2,1) 52%);
+	background: -ms-linear-gradient(top, rgba(119,3,3,1) 18%,rgba(147,2,2,1) 52%);
+	background: linear-gradient(to bottom, rgba(119,3,3,1) 18%,rgba(147,2,2,1) 52%);
+}
+	body.web375  .controls a, body.web375 #nav li a { color: #000 }
+	
+	body.web375 #nav li a:hover {
+		background: #000;
+		color: #fff;
+		opacity: 0.75;
+	}
+		body.web375 #nav li a.hit { 
+			color: #fff;
+			background: #000;
+		}
+	.web375 #slide_wrapper > section { background: #fff;}
+		.web375 #slide_wrapper > section ul li, .web375 #slide_wrapper > section > h3  {  color: #111; text-shadow: 1px 1px 0 rgba(0,0,0,.2)}
