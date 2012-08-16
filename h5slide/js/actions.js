@@ -87,7 +87,8 @@ http://www.opensource.org/licenses/mit-license.php
 				self.presentationMode();
 			});
 			
-
+			//enable keyboard actions
+			this.keyboard();
 			
 			if (this.getStorage('theme') !== null){ if(this.getStorage('theme') == "web375") { $('body').addClass('web375');$('#theme').html('<a href="#" title="Click to swap themes">Theme: Web 3.75</a>'); } }	
 			
@@ -236,6 +237,51 @@ http://www.opensource.org/licenses/mit-license.php
 			$('#slide_wrapper > section:eq(' + cs + ')').stop(false, true).fadeIn('slow');
 			$.fn.h5Slide.setStorage("currentslide", cs);
 			document.title = $('#slide_wrapper > section:visible').find('h3 > span').html();
+		},
+		
+		keyboard: function(){
+			/*Keybaord commands*/
+			$(document).on('keydown.h5slide',function(e){
+		   
+				if (e.keyCode === 40 || e.keyCode === 37) {  //down or left arrow
+					if ($.fn.h5Slide.currentSlide() === 0) {
+		    			$.fn.h5Slide.keySlide((parseInt($('#nav li').length) - 1));
+		    		} else {
+		    			$.fn.h5Slide.keySlide($.fn.h5Slide.currentSlide() - 1);
+		    		}
+		
+				} else if(e.keyCode === 38 || e.keyCode === 39) { //up or right arrow
+		
+					if ($.fn.h5Slide.currentSlide() === 0) {
+		    			$.fn.h5Slide.keySlide(1);
+		    		} else {
+		    			$.fn.h5Slide.keySlide($.fn.h5Slide.currentSlide() + 1);
+		    		}
+		 
+				}
+		
+				//esc to exit presentation mode
+				if (e.keyCode === 27 && $('body').hasClass('pres')) {
+		    		$.fn.h5Slide.presentationMode();
+		    		
+				}
+				//if not editing content, enable +, -, delete actions
+				if(!$(document.activeElement).attr('contenteditable')) { 
+					if(e.which === 107 || e.which === 187) { //+ key
+						$.fn.h5Slide.addSlide();
+						return false;
+					} else if (e.which === 109 || e.which === 8 || e.which === 189) { //- or delete key
+						$.fn.h5Slide.removeSlide();
+					}
+					
+					//p for presentation mode toggle
+					if (e.keyCode === 80) {
+		    			$.fn.h5Slide.presentationMode();
+		    		}
+				}
+		
+		  }); 	
+			
 		}
 		
 	}
@@ -245,46 +291,5 @@ $(document).ready(function() {
 		
 });
 
-		/*Keybaord commands*/
-		$(document).keydown(function(e){
-   
-    		if (e.keyCode === 40 || e.keyCode === 37) {  //down or left arrow
-				if ($.fn.h5Slide.currentSlide() === 0) {
-	    			$.fn.h5Slide.keySlide((parseInt($('#nav li').length) - 1));
-	    		} else {
-	    			$.fn.h5Slide.keySlide($.fn.h5Slide.currentSlide() - 1);
-	    		}
-
-    		} else if(e.keyCode === 38 || e.keyCode === 39) { //up or right arrow
-
-				if ($.fn.h5Slide.currentSlide() === 0) {
-	    			$.fn.h5Slide.keySlide(1);
-	    		} else {
-	    			$.fn.h5Slide.keySlide($.fn.h5Slide.currentSlide() + 1);
-	    		}
-	 
-    		}
-
-    		//esc to exit presentation mode
-    		if (e.keyCode === 27 && $('body').hasClass('pres')) {
-	    		$.fn.h5Slide.presentationMode();
-	    		
-    		}
-			//if not editing content, enable +, -, delete actions
-			if(!$(document.activeElement).attr('contenteditable')) { 
-				if(e.which === 107 || e.which === 187) { //+ key
-					$.fn.h5Slide.addSlide();
-					return false;
-				} else if (e.which === 109 || e.which === 8 || e.which === 189) { //- or delete key
-					$.fn.h5Slide.removeSlide();
-				}
-				
-				//p for presentation mode toggle
-				if (e.keyCode === 80) {
-	    			$.fn.h5Slide.presentationMode();
-	    		}
-			}
-
-  }); 	
 	
 })(jQuery);
