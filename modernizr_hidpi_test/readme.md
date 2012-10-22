@@ -1,0 +1,1 @@
+A basic Modernizr test for HiDPI and Retina detection. Test uses JS media queries to determine if user's resolution is high res.
