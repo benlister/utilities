@@ -1,6 +1,6 @@
 /*
 h5Slide - HTML5 powered, browser-based slideshow
-Written by Ben Lister (@bahnburner) June 2010 
+Written by Ben Lister (@benclister) June 2010 
 Last revised Aug 14, 2012
 
 Licensed under the MIT License:
